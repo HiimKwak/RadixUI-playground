@@ -1,6 +1,6 @@
 "use client";
 
-import { Pencil1Icon } from "@radix-ui/react-icons";
+import { Cross1Icon, Pencil1Icon } from "@radix-ui/react-icons";
 import users from "./users.json";
 import * as Dialog from "@radix-ui/react-dialog";
 
@@ -27,7 +27,27 @@ export default function Page() {
               <Dialog.Portal>
                 <Dialog.Overlay className="fixed inset-0 bg-black/50" />
                 <Dialog.Content className="fixed w-full max-w-md p-8 text-gray-900 -translate-x-1/2 -translate-y-1/2 bg-white rounded-md shadow left-1/2 top-1/2">
-                  Let's see if this works
+                  <div className="flex items-center justify-between">
+                    <Dialog.Title className="text-xl">
+                      Edit contact
+                    </Dialog.Title>
+                    <Dialog.Close className="text-gray-400 hover:text-gray-500">
+                      <Cross1Icon />
+                    </Dialog.Close>
+                  </div>
+
+                  <div className="mt-8">
+                    <UserFields user={user} />
+                  </div>
+
+                  <div className="mt-8 space-x-6 text-right">
+                    <Dialog.Close className="px-4 py-2 text-sm font-medium text-gray-500 rounded hover:text-gray-600">
+                      Cancel
+                    </Dialog.Close>
+                    <button className="px-4 py-2 text-sm font-medium text-white bg-green-500 rounded hover:bg-green-600">
+                      Save
+                    </button>
+                  </div>
                 </Dialog.Content>
               </Dialog.Portal>
             </Dialog.Root>
