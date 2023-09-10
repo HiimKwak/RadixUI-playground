@@ -1,10 +1,10 @@
 "use client";
 
-import { Cross1Icon, Pencil1Icon } from "@radix-ui/react-icons";
-import * as Dialog from "@radix-ui/react-dialog";
+import { Pencil1Icon } from "@radix-ui/react-icons";
 import { Contact, useContacts } from "@/lib/contacts";
 import { FormEvent, useState } from "react";
 import { Spinner } from "./spinner";
+import Modal from "./modal";
 
 export default function Page() {
   let { contacts } = useContacts();
@@ -34,25 +34,15 @@ function ContactCard({ contact }: { contact: Contact }) {
         <p className="text-sm text-gray-500">{contact.email}</p>
       </div>
 
-      <Dialog.Root open={open} onOpenChange={setOpen}>
-        <Dialog.Trigger className="p-2 rounded hover:bg-gray-200">
+      <Modal open={open} onOpenChange={setOpen}>
+        <Modal.Button className="p-2 rounded hover:bg-gray-200">
           <Pencil1Icon />
-        </Dialog.Trigger>
+        </Modal.Button>
 
-        <Dialog.Portal>
-          <Dialog.Overlay className="data-[state=open]:animate-[dialog-overlay-show_200ms] data-[state=closed]:animate-[dialog-overlay-hide_200ms] fixed inset-0 bg-black/50" />
-          <Dialog.Content className="data-[state=open]:animate-[dialog-content-show_200ms] data-[state=closed]:animate-[dialog-content-hide_200ms] fixed w-full max-w-md p-8 text-gray-900 -translate-x-1/2 -translate-y-1/2 bg-white rounded-md shadow left-1/2 top-1/2">
-            <div className="flex items-center justify-between">
-              <Dialog.Title className="text-xl">Edit contact</Dialog.Title>
-              <Dialog.Close className="text-gray-400 hover:text-gray-500">
-                <Cross1Icon />
-              </Dialog.Close>
-            </div>
-
-            <ContactForm contact={contact} afterSave={() => setOpen(false)} />
-          </Dialog.Content>
-        </Dialog.Portal>
-      </Dialog.Root>
+        <Modal.Content title="Edit contact">
+          <ContactForm contact={contact} afterSave={() => setOpen(false)} />
+        </Modal.Content>
+      </Modal>
     </div>
   );
 }
@@ -119,9 +109,9 @@ function ContactForm({
           </div>
         </div>
         <div className="mt-8 space-x-6 text-right">
-          <Dialog.Close className="px-4 py-2 text-sm font-medium text-gray-500 rounded hover:text-gray-600">
+          <Modal.Close className="px-4 py-2 text-sm font-medium text-gray-500 rounded hover:text-gray-600">
             Cancel
-          </Dialog.Close>
+          </Modal.Close>
           <button className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-green-500 rounded hover:bg-green-600 group-disabled:pointer-events-none">
             <Spinner className="absolute h-4 group-enabled:opacity-0" />
             <span className="group-disabled:opacity-0">Save</span>
