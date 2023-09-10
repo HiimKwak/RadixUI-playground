@@ -68,3 +68,11 @@ className = "fixed left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2";
 ```jsx
 <Dialog.Overlay className="data-[state=open]:animate-[dialog-overlay-show_200ms] data-[state=closed]:animate-[dialog-overlay-hide_200ms] fixed inset-0 bg-black/50" />
 ```
+
+## VS Code 팁
+
+1. 같은 키워드 한번에 수정하기 -> F2(cmd + d 해도 됨)
+
+2. 코드 블럭 지정해서 하나의 태그로 감싸기 -> cmd + shift + c(shortcut 등록 필요)
+
+3. 코드 블럭 접고 펼치기 단축키 -> cmd + opt + [ or ]
