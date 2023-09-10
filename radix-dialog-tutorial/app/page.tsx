@@ -34,15 +34,17 @@ function ContactCard({ contact }: { contact: Contact }) {
         <p className="text-sm text-gray-500">{contact.email}</p>
       </div>
 
-      <Modal open={open} onOpenChange={setOpen}>
-        <Modal.Button className="p-2 rounded hover:bg-gray-200">
-          <Pencil1Icon />
-        </Modal.Button>
+      <div>
+        <Modal open={open} onOpenChange={setOpen}>
+          <Modal.Button className="p-2 rounded hover:bg-gray-200">
+            <Pencil1Icon />
+          </Modal.Button>
 
-        <Modal.Content title="Edit contact">
-          <ContactForm contact={contact} afterSave={() => setOpen(false)} />
-        </Modal.Content>
-      </Modal>
+          <Modal.Content title="Edit contact">
+            <ContactForm contact={contact} afterSave={() => setOpen(false)} />
+          </Modal.Content>
+        </Modal>
+      </div>
     </div>
   );
 }

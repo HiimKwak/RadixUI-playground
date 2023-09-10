@@ -27,8 +27,8 @@ function ModalContent({
 }) {
   return (
     <Dialog.Portal>
-      <Dialog.Overlay className="data-[state=open]:animate-[dialog-overlay-show_200ms] data-[state=closed]:animate-[dialog-overlay-hide_200ms] fixed inset-0 bg-black/50" />
-      <Dialog.Content className="data-[state=open]:animate-[dialog-content-show_200ms] data-[state=closed]:animate-[dialog-content-hide_200ms] fixed w-full max-w-md p-8 text-gray-900 -translate-x-1/2 -translate-y-1/2 bg-white rounded-md shadow left-1/2 top-1/2">
+      <Dialog.Overlay className="fixed inset-0 bg-black/50 data-[state=open]:animate-[dialog-overlay-show_200ms] data-[state=closed]:animate-[dialog-overlay-hide_200ms]" />
+      <Dialog.Content className="fixed w-full max-w-md p-8 text-gray-900 -translate-x-1/2 -translate-y-1/2 bg-white rounded-md shadow left-1/2 top-1/2 data-[state=open]:animate-[dialog-content-show_200ms] data-[state=closed]:animate-[dialog-content-hide_200ms]">
         <div className="flex items-center justify-between">
           <Dialog.Title className="text-xl">{title}</Dialog.Title>
           <Dialog.Close className="text-gray-400 hover:text-gray-500">
@@ -43,5 +43,5 @@ function ModalContent({
 }
 
 Modal.Button = Dialog.Trigger;
-Modal.Content = Dialog.Content;
+Modal.Content = ModalContent;
 Modal.Close = Dialog.Close;
