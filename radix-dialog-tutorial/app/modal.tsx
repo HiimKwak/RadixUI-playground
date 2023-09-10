@@ -7,8 +7,8 @@ export default function Modal({
   onOpenChange,
   children,
 }: {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
   children: ReactNode;
 }) {
   return (

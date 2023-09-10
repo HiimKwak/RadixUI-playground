@@ -147,7 +147,7 @@ export function useContacts() {
 
     await sleep(1000);
 
-    setContacts(newContacts);
+    setContacts(newContacts as Contact[]);
   }
 
   return {

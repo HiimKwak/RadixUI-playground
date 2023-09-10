@@ -1,22 +1,48 @@
 "use client";
 
-import { Pencil1Icon } from "@radix-ui/react-icons";
+import { Pencil1Icon, QuestionMarkCircledIcon } from "@radix-ui/react-icons";
 import { Contact, useContacts } from "@/lib/contacts";
 import { FormEvent, useState } from "react";
 import { Spinner } from "./spinner";
 import Modal from "./modal";
+import Button from "./button";
 
 export default function Page() {
   let { contacts } = useContacts();
 
   return (
-    <div className="py-10">
-      <div className="max-w-sm p-4 mx-auto space-y-4 bg-gray-200 rounded-lg">
-        {contacts.map((contact) => (
-          <ContactCard key={contact.id} contact={contact} />
-        ))}
+    <>
+      <div>
+        <header className="flex items-center justify-between p-4 bg-blue-950">
+          <p className="font-medium">Trello</p>
+
+          <Modal>
+            <Modal.Button asChild>
+              <Button icon={<QuestionMarkCircledIcon />}>About</Button>
+            </Modal.Button>
+            <Modal.Content title="About Trello">
+              <div className="mt-4 space-y-3 text-gray-600">
+                <p>This is a React app built with Radix UI!</p>
+                <p>Technologies used:</p>
+                <ul className="pl-4 list-disc">
+                  <li>Radix UI Dialog</li>
+                  <li>Next.js</li>
+                  <li>Tailwind CSS</li>
+                </ul>
+              </div>
+            </Modal.Content>
+          </Modal>
+        </header>
       </div>
-    </div>
+
+      <div className="py-10">
+        <div className="max-w-sm p-4 mx-auto space-y-4 bg-gray-200 rounded-lg">
+          {contacts.map((contact) => (
+            <ContactCard key={contact.id} contact={contact} />
+          ))}
+        </div>
+      </div>
+    </>
   );
 }
 
