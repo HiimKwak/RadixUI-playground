@@ -4,6 +4,7 @@ import { Cross1Icon, Pencil1Icon } from "@radix-ui/react-icons";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Contact, useContacts } from "@/lib/contacts";
 import { FormEvent, useState } from "react";
+import { Spinner } from "./spinner";
 
 export default function Page() {
   let { contacts } = useContacts();
@@ -22,9 +23,12 @@ export default function Page() {
 function ContactCard({ contact }: { contact: Contact }) {
   let { updateContact } = useContacts();
   let [open, setOpen] = useState(false);
+  let [saving, setSaving] = useState(false);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setSaving(true);
+
     let data = Object.fromEntries(new FormData(event.currentTarget));
     console.log(data);
 
@@ -59,17 +63,20 @@ function ContactCard({ contact }: { contact: Contact }) {
             </div>
 
             <form onSubmit={handleSubmit}>
-              <div className="mt-8">
-                <ContactFields contact={contact} />
-              </div>
-              <div className="mt-8 space-x-6 text-right">
-                <Dialog.Close className="px-4 py-2 text-sm font-medium text-gray-500 rounded hover:text-gray-600">
-                  Cancel
-                </Dialog.Close>
-                <button className="px-4 py-2 text-sm font-medium text-white bg-green-500 rounded hover:bg-green-600">
-                  Save
-                </button>
-              </div>
+              <fieldset disabled={saving} className="group">
+                <div className="mt-8 group-disabled:opacity-50">
+                  <ContactFields contact={contact} />
+                </div>
+                <div className="mt-8 space-x-6 text-right">
+                  <Dialog.Close className="px-4 py-2 text-sm font-medium text-gray-500 rounded hover:text-gray-600">
+                    Cancel
+                  </Dialog.Close>
+                  <button className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-green-500 rounded hover:bg-green-600 group-disabled:pointer-events-none">
+                    <Spinner className="absolute h-4 group-enabled:opacity-0" />
+                    <span className="group-disabled:opacity-0">Save</span>
+                  </button>
+                </div>
+              </fieldset>
             </form>
           </Dialog.Content>
         </Dialog.Portal>
