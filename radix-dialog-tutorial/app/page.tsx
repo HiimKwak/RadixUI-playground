@@ -1,7 +1,6 @@
 "use client";
 
 import { Cross1Icon, Pencil1Icon } from "@radix-ui/react-icons";
-import users from "./users.json";
 import * as Dialog from "@radix-ui/react-dialog";
 
 export default function Page() {
