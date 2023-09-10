@@ -56,3 +56,15 @@ className = "fixed left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2";
   </fieldset>
 </form>
 ```
+
+3. animation tips
+
+   적절한 animation만 적용해도 앱의 퀄리티가 깔@쌈해진다.
+
+   1. global.css 혹은 import/export로 연결돼있는 css 파일에 `@keyframes`로 animation을 정의하자.
+   2. css의 적용 범위 내 파일에서 `animate-[{keyframe 이름}_{지속시간}]`으로 적용하면 끝.
+   3. 추가로 Radix가 자동으로 modal의 open 여부를 'data-state:open/closed' 프로퍼티를 부여해 관리하고 있으므로 `data-[state:open/closed]:` 전치조건을 기입해 애니메이션을 100% 컨트롤할 수 있다!
+
+```jsx
+<Dialog.Overlay className="data-[state=open]:animate-[dialog-overlay-show_200ms] data-[state=closed]:animate-[dialog-overlay-hide_200ms] fixed inset-0 bg-black/50" />
+```
